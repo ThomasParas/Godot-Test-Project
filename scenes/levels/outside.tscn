@@ -1,0 +1,108 @@
+[gd_scene load_steps=16 format=3 uid="uid://4lk3sjrfw63d"]
+
+[ext_resource type="PackedScene" uid="uid://c3m26rb78usw2" path="res://scenes/levels/level.tscn" id="1_lkhlf"]
+[ext_resource type="Script" path="res://scenes/levels/outside.gd" id="2_bcb3r"]
+[ext_resource type="PackedScene" uid="uid://d218fj4xrtctg" path="res://scenes/objects/item_containers/toilet.tscn" id="3_wxwtx"]
+[ext_resource type="PackedScene" uid="uid://d3a08lyix4kh8" path="res://scenes/objects/item_containers/box.tscn" id="4_2txao"]
+[ext_resource type="PackedScene" uid="uid://ov3r0w3b0187" path="res://scenes/objects/gate.tscn" id="5_4t2dm"]
+[ext_resource type="PackedScene" uid="uid://hpay8x0wqlbe" path="res://scenes/objects/bed.tscn" id="5_b6bc7"]
+[ext_resource type="PackedScene" uid="uid://bl2sfut1lw0kh" path="res://scenes/objects/box.tscn" id="6_ktccy"]
+[ext_resource type="PackedScene" uid="uid://7xcx17pxymju" path="res://scenes/objects/lights/blinking_light.tscn" id="7_htydd"]
+[ext_resource type="PackedScene" uid="uid://bcnvbuofr8dhj" path="res://scenes/objects/SteamVent.tscn" id="8_mtmii"]
+[ext_resource type="PackedScene" uid="uid://ds3r1xybvj13y" path="res://scenes/objects/lights/wall_lamp.tscn" id="9_e25wf"]
+[ext_resource type="PackedScene" uid="uid://cbxkc6b8n6ik1" path="res://scenes/objects/light_fan_animation.tscn" id="10_5ed6d"]
+[ext_resource type="Texture2D" uid="uid://wvnq82hqa0lg" path="res://graphics/ground/stones.png" id="11_wwoxy"]
+[ext_resource type="Texture2D" uid="uid://bq5ayq18l7pbq" path="res://graphics/decals/dirt_patch.png" id="12_nohqp"]
+[ext_resource type="PackedScene" uid="uid://csrowyu1lgibw" path="res://scenes/Items/item.tscn" id="13_xr5ql"]
+[ext_resource type="PackedScene" uid="uid://d125efgkdkdr4" path="res://scenes/levels/house.tscn" id="14_5lybd"]
+
+[node name="Outside" instance=ExtResource("1_lkhlf")]
+script = ExtResource("2_bcb3r")
+
+[node name="Soil" type="Sprite2D" parent="ground" index="1"]
+z_index = -10
+texture_repeat = 2
+position = Vector2(753, 300)
+texture = ExtResource("11_wwoxy")
+region_enabled = true
+region_rect = Rect2(-4159.31, -1140.52, 20000, 10000)
+
+[node name="Doodad" type="Sprite2D" parent="ground" index="2"]
+z_index = -9
+position = Vector2(800, 1088)
+scale = Vector2(0.629771, 0.751342)
+texture = ExtResource("12_nohqp")
+
+[node name="Player" parent="agents" index="0"]
+position = Vector2(1071, -497)
+
+[node name="Toilet" parent="objects" index="0" instance=ExtResource("3_wxwtx")]
+position = Vector2(-711, -302)
+collision_layer = 1
+collision_mask = 1
+
+[node name="Box" parent="objects" index="1" instance=ExtResource("4_2txao")]
+position = Vector2(-309, -430)
+collision_layer = 1
+collision_mask = 1
+
+[node name="Bed" parent="objects" index="2" instance=ExtResource("5_b6bc7")]
+position = Vector2(2045, 444)
+
+[node name="box" parent="objects" index="3" instance=ExtResource("6_ktccy")]
+position = Vector2(152, 60)
+
+[node name="box2" parent="objects" index="4" instance=ExtResource("6_ktccy")]
+position = Vector2(1245, -49)
+
+[node name="box3" parent="objects" index="5" instance=ExtResource("6_ktccy")]
+position = Vector2(402, 777)
+
+[node name="box4" parent="objects" index="6" instance=ExtResource("6_ktccy")]
+position = Vector2(1286, 720)
+
+[node name="box5" parent="objects" index="7" instance=ExtResource("6_ktccy")]
+position = Vector2(2072, 27)
+
+[node name="BlinkingLight" parent="objects" index="8" instance=ExtResource("7_htydd")]
+position = Vector2(884, 1493)
+
+[node name="SteamVent" parent="objects" index="9" instance=ExtResource("8_mtmii")]
+position = Vector2(-1021, 409)
+
+[node name="Wall Lamp" parent="objects" index="10" instance=ExtResource("9_e25wf")]
+position = Vector2(2401, 1240)
+
+[node name="LightFanAnimation" parent="objects" index="11" instance=ExtResource("10_5ed6d")]
+position = Vector2(-373, 870)
+frame_progress = 0.658527
+
+[node name="LightFanAnimation2" parent="objects" index="12" instance=ExtResource("10_5ed6d")]
+position = Vector2(-3399, -174)
+frame_progress = 0.658527
+
+[node name="LightFanAnimation3" parent="objects" index="13" instance=ExtResource("10_5ed6d")]
+position = Vector2(-3323, 919)
+frame_progress = 0.658527
+
+[node name="LightFanAnimation4" parent="objects" index="14" instance=ExtResource("10_5ed6d")]
+position = Vector2(-4568, 939)
+frame_progress = 0.658527
+
+[node name="LightFanAnimation5" parent="objects" index="15" instance=ExtResource("10_5ed6d")]
+position = Vector2(-4692, -108)
+frame_progress = 0.658527
+
+[node name="Item" parent="objects" index="16" instance=ExtResource("13_xr5ql")]
+position = Vector2(1844, -322)
+
+[node name="Gate" parent="." index="5" instance=ExtResource("5_4t2dm")]
+position = Vector2(1051, -821)
+
+[node name="House" parent="." index="6" instance=ExtResource("14_5lybd")]
+position = Vector2(-5568, 2686)
+rotation = -1.62839
+
+[connection signal="player_entered_gate" from="Gate" to="." method="_on_gate_player_entered_gate"]
+[connection signal="player_entered" from="House" to="." method="_on_house_player_entered"]
+[connection signal="player_exited" from="House" to="." method="_on_house_player_exited"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://d218fj4xrtctg"]
+
+[ext_resource type="PackedScene" uid="uid://btiectrrj2vb5" path="res://scenes/objects/item_containers/item_container.tscn" id="1_2cijn"]
+[ext_resource type="Script" path="res://scenes/objects/item_containers/Toilet.gd" id="2_a85ls"]
+[ext_resource type="Texture2D" uid="uid://lniud42bplt" path="res://graphics/objects/lid.png" id="3_mbyos"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oaodx"]
+radius = 97.5141
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jfhn4"]
+polygon = PackedVector2Array(1, -89, 27, -88, 53, -87, 74, -86, 100, -61, 97, -20, 87, 18, 63, 60, 29, 83, 2, 93, -25, 85, -47, 72, -66, 52, -78, 29, -90, 2, -102, -41, -104, -63, -87, -72, -79, -87)
+
+[node name="Toilet" instance=ExtResource("1_2cijn")]
+script = ExtResource("2_a85ls")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_mbyos")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_oaodx")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." index="2"]
+occluder = SubResource("OccluderPolygon2D_jfhn4")

@@ -1,0 +1,170 @@
+[gd_scene load_steps=18 format=3 uid="uid://bndxwter8wr8u"]
+
+[ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_i3cpj"]
+[ext_resource type="PackedScene" uid="uid://hpay8x0wqlbe" path="res://scenes/objects/bed.tscn" id="2_nsx0c"]
+[ext_resource type="PackedScene" uid="uid://bl2sfut1lw0kh" path="res://scenes/objects/box.tscn" id="3_w7rpn"]
+[ext_resource type="PackedScene" uid="uid://7xcx17pxymju" path="res://scenes/objects/lights/blinking_light.tscn" id="4_74fxy"]
+[ext_resource type="PackedScene" uid="uid://bcnvbuofr8dhj" path="res://scenes/objects/SteamVent.tscn" id="5_oh81m"]
+[ext_resource type="PackedScene" uid="uid://ds3r1xybvj13y" path="res://scenes/objects/lights/wall_lamp.tscn" id="6_ygbrp"]
+[ext_resource type="PackedScene" uid="uid://cbxkc6b8n6ik1" path="res://scenes/objects/light_fan_animation.tscn" id="7_k6cyq"]
+[ext_resource type="PackedScene" uid="uid://vwxs2inbjsn1" path="res://scenes/player/player.tscn" id="8_b3a42"]
+[ext_resource type="PackedScene" uid="uid://bc7us1akhed1n" path="res://scenes/enemies/drone.tscn" id="9_m45hs"]
+[ext_resource type="Texture2D" uid="uid://wvnq82hqa0lg" path="res://graphics/ground/stones.png" id="10_cgpe3"]
+[ext_resource type="Texture2D" uid="uid://bq5ayq18l7pbq" path="res://graphics/decals/dirt_patch.png" id="11_gao1l"]
+[ext_resource type="Texture2D" uid="uid://clw4l4bvo2nhr" path="res://graphics/tilesets/outside_walls.png" id="12_i5fn8"]
+[ext_resource type="Texture2D" uid="uid://c7shvj3xlt2y8" path="res://graphics/tilesets/soil.png" id="13_58qo7"]
+[ext_resource type="PackedScene" uid="uid://d125efgkdkdr4" path="res://scenes/levels/house.tscn" id="14_yauv8"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kugd6"]
+resource_name = "Walls"
+texture = ExtResource("12_i5fn8")
+texture_region_size = Vector2i(390, 390)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+0:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kqqsr"]
+resource_name = "Soil"
+texture = ExtResource("13_58qo7")
+texture_region_size = Vector2i(390, 390)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_v47uw"]
+tile_size = Vector2i(390, 390)
+sources/0 = SubResource("TileSetAtlasSource_kugd6")
+sources/1 = SubResource("TileSetAtlasSource_kqqsr")
+
+[node name="Level" type="Node2D" groups=["projectiles"]]
+script = ExtResource("1_i3cpj")
+
+[node name="objects" type="Node2D" parent="."]
+
+[node name="Bed" parent="objects" instance=ExtResource("2_nsx0c")]
+position = Vector2(2045, 444)
+
+[node name="box" parent="objects" instance=ExtResource("3_w7rpn")]
+position = Vector2(152, 60)
+
+[node name="box2" parent="objects" instance=ExtResource("3_w7rpn")]
+position = Vector2(1245, -49)
+
+[node name="box3" parent="objects" instance=ExtResource("3_w7rpn")]
+position = Vector2(402, 777)
+
+[node name="box4" parent="objects" instance=ExtResource("3_w7rpn")]
+position = Vector2(1286, 720)
+
+[node name="box5" parent="objects" instance=ExtResource("3_w7rpn")]
+position = Vector2(2072, 27)
+
+[node name="BlinkingLight" parent="objects" instance=ExtResource("4_74fxy")]
+position = Vector2(884, 1493)
+
+[node name="SteamVent" parent="objects" instance=ExtResource("5_oh81m")]
+position = Vector2(-1021, 409)
+
+[node name="Wall Lamp" parent="objects" instance=ExtResource("6_ygbrp")]
+position = Vector2(2401, 1240)
+
+[node name="LightFanAnimation" parent="objects" instance=ExtResource("7_k6cyq")]
+position = Vector2(-373, 870)
+frame_progress = 0.658527
+
+[node name="LightFanAnimation2" parent="objects" instance=ExtResource("7_k6cyq")]
+position = Vector2(-3399, -174)
+frame_progress = 0.658527
+
+[node name="LightFanAnimation3" parent="objects" instance=ExtResource("7_k6cyq")]
+position = Vector2(-3323, 919)
+frame_progress = 0.658527
+
+[node name="LightFanAnimation4" parent="objects" instance=ExtResource("7_k6cyq")]
+position = Vector2(-4568, 939)
+frame_progress = 0.658527
+
+[node name="LightFanAnimation5" parent="objects" instance=ExtResource("7_k6cyq")]
+position = Vector2(-4692, -108)
+frame_progress = 0.658527
+
+[node name="projectiles" type="Node2D" parent="." groups=["Projectiles"]]
+
+[node name="triggers" type="Node2D" parent="."]
+
+[node name="ammo_boundary_north" type="Marker2D" parent="triggers"]
+position = Vector2(22, -4657)
+scale = Vector2(-9.32733, 194.068)
+
+[node name="ammo_boundary_south" type="Marker2D" parent="triggers"]
+position = Vector2(58, 5264)
+
+[node name="ammo_boundary_east" type="Marker2D" parent="triggers"]
+position = Vector2(10746, 28)
+
+[node name="ammo_boundary_west" type="Marker2D" parent="triggers"]
+position = Vector2(-9305, 1)
+
+[node name="drone_spawner" type="Marker2D" parent="triggers"]
+position = Vector2(-378, 372)
+
+[node name="agents" type="Node2D" parent="."]
+
+[node name="Player" parent="agents" instance=ExtResource("8_b3a42")]
+position = Vector2(-2033, 228)
+
+[node name="drone" parent="agents" groups=["enemies"] instance=ExtResource("9_m45hs")]
+position = Vector2(25, 361)
+
+[node name="ground" type="Node2D" parent="."]
+
+[node name="Soil" type="Sprite2D" parent="ground"]
+z_index = -10
+texture_repeat = 2
+position = Vector2(753, 300)
+texture = ExtResource("10_cgpe3")
+region_enabled = true
+region_rect = Rect2(-4159.31, -1140.52, 20000, 10000)
+
+[node name="Doodad" type="Sprite2D" parent="ground"]
+z_index = -9
+position = Vector2(800, 1088)
+scale = Vector2(0.629771, 0.751342)
+texture = ExtResource("11_gao1l")
+
+[node name="TileMap" type="TileMap" parent="ground"]
+position = Vector2(1, 0)
+tile_set = SubResource("TileSet_v47uw")
+format = 2
+layer_0/name = "Ground"
+layer_0/z_index = -8
+layer_0/tile_data = PackedInt32Array(327676, 1, 2, 327677, 65537, 2, 327678, 65537, 2, 327679, 65537, 2, 262144, 65537, 2, 262145, 65537, 2, 262146, 65537, 2, 262147, 65537, 2, 262148, 65537, 2, 262149, 65537, 2, 262150, 65537, 2, 262151, 131073, 2, 196615, 131073, 1, 131079, 131073, 1, 65543, 131073, 1, 7, 131073, 1, -65529, 131073, 1, -131065, 131073, 1, -196601, 131073, 0, -196602, 65537, 0, -196603, 65537, 0, -196604, 65537, 0, -196605, 65537, 0, -196606, 65537, 0, -196607, 65537, 0, -196608, 65537, 0, -131073, 65537, 0, -131074, 65537, 0, -131075, 65537, 0, -131076, 1, 0, -65540, 1, 1, -4, 1, 1, 65532, 1, 1, 131068, 1, 1, 196604, 1, 1, 262140, 1, 1)
+layer_1/name = "Walls"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = -7
+layer_1/tile_data = PackedInt32Array(327677, 65536, 0, 327678, 65536, 0, 327679, 65536, 0, 262144, 65536, 0, 262145, 65536, 0, 262146, 65536, 0, 262147, 65536, 0, 262148, 65536, 0, 262149, 65536, 0, 262150, 65536, 0, -131075, 65536, 0, -131074, 65536, 0, -131073, 65536, 0, -196608, 65536, 0, -196607, 65536, 0, -196606, 65536, 0, -196605, 65536, 0, -196604, 65536, 0, -196603, 65536, 0, -196602, 65536, 0, -131065, 0, 2, 131079, 0, 2, 196615, 0, 2, -65540, 0, 2, 196604, 0, 2, 262140, 0, 2, -131076, 65536, 1, 327676, 65536, 2, 262151, 131072, 2, -196601, 131072, 1, 65543, 0, 1, 131068, 0, 1, -65529, 0, 3, -4, 0, 3)
+
+[node name="House" parent="." instance=ExtResource("14_yauv8")]
+position = Vector2(-5568, 2686)
+rotation = -1.62839
+
+[connection signal="grenade" from="agents/Player" to="." method="_on_player_grenade"]
+[connection signal="laser" from="agents/Player" to="." method="_on_player_laser"]
+[connection signal="player_entered" from="House" to="." method="_on_house_player_entered"]
+[connection signal="player_exited" from="House" to="." method="_on_house_player_exited"]

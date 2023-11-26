@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://7xcx17pxymju"]
+
+[ext_resource type="Script" path="res://scenes/objects/lights/blinking_light.gd" id="1_4ri0r"]
+[ext_resource type="Texture2D" uid="uid://cf8aui00a2brg" path="res://graphics/objects/light.png" id="2_fwjyv"]
+[ext_resource type="Texture2D" uid="uid://miaycjcdxrjn" path="res://graphics/lights/textures/circle.png" id="3_us5bc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jb50o"]
+radius = 17.0
+height = 194.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_oqvm6"]
+polygon = PackedVector2Array(-76, -16, -77, 5, -72, 11, -67, 12, 67, 12, 72, 11, 76, 6, 76, -16, 85, -16, 90, -13, 97, -7, 99, 1, 94, 10, 85, 16, 78, 17, 75, 18, -76, 18, -84, 17, -90, 14, -95, 9, -98, 4, -99, 0, -98, -5, -94, -10, -87, -15, -79, -17)
+
+[node name="BlinkingLight" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 15
+script = ExtResource("1_4ri0r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jb50o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -3.14159
+texture = ExtResource("2_fwjyv")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 6.5
+shadow_enabled = true
+texture = ExtResource("3_us5bc")
+texture_scale = 3.14
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_oqvm6")
+
+[node name="LongTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ShortTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[connection signal="timeout" from="LongTimer" to="." method="_on_long_timer_timeout"]
+[connection signal="timeout" from="ShortTimer" to="." method="_on_short_timer_timeout"]

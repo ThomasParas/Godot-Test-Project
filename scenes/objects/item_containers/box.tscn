@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3a08lyix4kh8"]
+
+[ext_resource type="PackedScene" uid="uid://btiectrrj2vb5" path="res://scenes/objects/item_containers/item_container.tscn" id="1_nbufq"]
+[ext_resource type="Script" path="res://scenes/objects/item_containers/Box.gd" id="2_rf43s"]
+[ext_resource type="Texture2D" uid="uid://dcbldfrgc63gm" path="res://graphics/objects/Box.png" id="3_0khji"]
+[ext_resource type="Shape2D" uid="uid://diy2ksbo0s7sr" path="res://scenes/objects/item_containers/box_rectangle_shape.tres" id="4_jpiin"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_icm2a"]
+polygon = PackedVector2Array(-171, -120, 168, -122, 170, 125, -175, 127)
+
+[node name="Box" instance=ExtResource("1_nbufq")]
+script = ExtResource("2_rf43s")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_0khji")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-2.5, 2.5)
+shape = ExtResource("4_jpiin")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." index="2"]
+occluder = SubResource("OccluderPolygon2D_icm2a")

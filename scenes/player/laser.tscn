@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://ba1ysci1pik1s"]
+
+[ext_resource type="Script" path="res://scenes/player/laser.gd" id="1_j0fsb"]
+[ext_resource type="Texture2D" uid="uid://bcokuscsiyw72" path="res://graphics/projectiles/blue.png" id="1_y8ihy"]
+[ext_resource type="Script" path="res://scenes/player/Trail2D.gd" id="3_16fqy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o3dy8"]
+radius = 7.0
+height = 76.0
+
+[node name="laser" type="Area2D"]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_j0fsb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, 44)
+texture = ExtResource("1_y8ihy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_o3dy8")
+
+[node name="Trail2D" type="Line2D" parent="."]
+width = 5.0
+default_color = Color(0.690196, 0.658824, 1, 0.564706)
+script = ExtResource("3_16fqy")
+target_path = NodePath("..")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=3 uid="uid://vwxs2inbjsn1"]
+
+[ext_resource type="Texture2D" uid="uid://2n5mfldwcme8" path="res://graphics/player/player.png" id="1_2k5aw"]
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_fe8ii"]
+[ext_resource type="Texture2D" uid="uid://miaycjcdxrjn" path="res://graphics/lights/textures/circle.png" id="3_8fmcp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ixylw"]
+radius = 56.0089
+
+[sub_resource type="Curve" id="Curve_lnhx6"]
+_data = [Vector2(0, 0.9341), 0.0, 0.0, 0, 0, Vector2(0.230497, 0.537057), 0.0, 0.0, 0, 0, Vector2(0.568325, 0.208835), 0.0, 0.0, 0, 0, Vector2(0.938416, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_8h2c1"]
+colors = PackedColorArray(0.47451, 0.643137, 1, 0.905882, 1, 1, 1, 0.615686)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nu6dl"]
+polygon = PackedVector2Array(26, -61, 35, -47, 43, -41, 43, -37, 48, -29, 54, -28, 61, -25, 75, -11, 86, -11, 94, -6, 107, -4, 111, 1, 123, 2, 122, 10, 127, 6, 132, 11, 120, 20, 129, 32, 120, 31, 122, 37, 111, 36, 107, 34, 100, 44, 95, 45, 95, 52, 59, 51, 58, 44, 64, 40, 44, 40, 42, 38, 34, 45, 25, 46, 14, 53, 8, 53, 2, 59, -7, 59, -15, 61, -31, 57, -38, 47, -44, 35, -54, 20, -52, 14, -59, 7, -60, -9, -55, -31, -49, -43, -34, -48, -31, -46, -28, -48, -28, -51, -16, -57, -12, -57, -11, -55, -4, -59, 8, -60, 11, -57, 16, -61)
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 15
+script = ExtResource("1_fe8ii")
+
+[node name="PlayerImage" type="Sprite2D" parent="."]
+position = Vector2(36, 0)
+rotation = 1.5708
+texture = ExtResource("1_2k5aw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ixylw")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="PrimaryTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="SecondaryTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="LaserStartPositions" type="Node2D" parent="."]
+
+[node name="GunPoint" type="Marker2D" parent="LaserStartPositions"]
+position = Vector2(128, 29)
+
+[node name="GunPoint2" type="Marker2D" parent="LaserStartPositions"]
+position = Vector2(131, 18)
+
+[node name="GunPoint3" type="Marker2D" parent="LaserStartPositions"]
+position = Vector2(128, 9)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(129, 18)
+emitting = false
+amount = 20
+one_shot = true
+speed_scale = 5.0
+explosiveness = 0.01
+emission_shape = 1
+emission_sphere_radius = 23.2
+spread = 109.92
+gravity = Vector2(5, 5)
+initial_velocity_min = 39.28
+initial_velocity_max = 92.86
+scale_amount_min = 0.0
+scale_amount_max = 8.14
+scale_amount_curve = SubResource("Curve_lnhx6")
+color = Color(0.85098, 0.831373, 1, 1)
+color_ramp = SubResource("Gradient_8h2c1")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+scale = Vector2(0.997292, 0.98526)
+occluder = SubResource("OccluderPolygon2D_nu6dl")
+
+[node name="Flashlight" type="PointLight2D" parent="."]
+energy = 2.05
+texture = ExtResource("3_8fmcp")
+texture_scale = 3.0
+
+[connection signal="timeout" from="PrimaryTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="SecondaryTimer" to="." method="_on_secondary_timer_timeout"]
