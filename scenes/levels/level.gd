@@ -43,7 +43,7 @@ func _on_player_laser(pos, direction):
 	laser.direction = direction
 	laser.rotation_degrees = rad_to_deg(direction.angle()) + 90
 	$projectiles.add_child(laser)
-	
+
 
 func _on_player_grenade(pos, direction):
 	var grenade = grenade_scene.instantiate() as RigidBody2D
