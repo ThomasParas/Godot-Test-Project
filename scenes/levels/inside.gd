@@ -5,6 +5,7 @@ extends LevelParent
 func _ready():
 	if $agents/Player:
 		$agents/Player.zoom_in()
+	super._ready()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

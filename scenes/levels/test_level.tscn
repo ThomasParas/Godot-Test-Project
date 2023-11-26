@@ -1,6 +1,4 @@
-
-[gd_scene load_steps=12 format=3 uid="uid://dyjr5eytrhrn2"]
-
+[gd_scene load_steps=12 format=3 uid="uid://dkuk60j5le4ty"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_nn2io"]
 [ext_resource type="Texture2D" uid="uid://clw4l4bvo2nhr" path="res://graphics/tilesets/outside_walls.png" id="2_5ftol"]
@@ -146,9 +144,12 @@ position = Vector2(-3586, -442)
 [node name="drone" parent="agents" groups=["enemies"] instance=ExtResource("5_4yto5")]
 position = Vector2(-596, 344)
 
-[node name="drone" parent="agents/drone" groups=["enemies"] instance=ExtResource("5_4yto5")]
-position = Vector2(-2135, -165)
+[node name="drone2" parent="agents" groups=["enemies"] instance=ExtResource("5_4yto5")]
+position = Vector2(-2731, 179)
 rotation = -1.54085
+
+[node name="drone3" parent="agents" instance=ExtResource("5_4yto5")]
+position = Vector2(-1476, -392)
 
 [node name="objects" type="Node2D" parent="."]
 
@@ -156,32 +157,31 @@ rotation = -1.54085
 position = Vector2(-3691, 957)
 rotation = 1.12755
 
-[node name="SimpleLight2" parent="objects/SimpleLight" instance=ExtResource("6_ggmqr")]
-position = Vector2(42.166, -3721.56)
-rotation = 2.25509
-
-[node name="SimpleLight3" parent="objects/SimpleLight" instance=ExtResource("6_ggmqr")]
-position = Vector2(1127.53, -2176.78)
-rotation = -1.14512
-
-[node name="UI" parent="." instance=ExtResource("6_yak4c")]
-
-[node name="Item" parent="." instance=ExtResource("8_h3usi")]
+[node name="Item" parent="objects" instance=ExtResource("8_h3usi")]
 position = Vector2(-3500, 755)
 
-[node name="Item2" parent="." instance=ExtResource("8_h3usi")]
+[node name="Item2" parent="objects" instance=ExtResource("8_h3usi")]
 position = Vector2(-2330, 202)
 
-[node name="Item3" parent="." instance=ExtResource("8_h3usi")]
+[node name="Item3" parent="objects" instance=ExtResource("8_h3usi")]
 position = Vector2(-797, -387)
 
-[node name="Item4" parent="." instance=ExtResource("8_h3usi")]
+[node name="Item4" parent="objects" instance=ExtResource("8_h3usi")]
 position = Vector2(-378, 343)
 
-[node name="drone" parent="." instance=ExtResource("5_4yto5")]
-position = Vector2(-1476, -392)
+[node name="SimpleLight2" parent="objects" instance=ExtResource("6_ggmqr")]
+position = Vector2(-310.992, -600.99)
+rotation = -2.90055
+scale = Vector2(1, 1)
+
+[node name="SimpleLight3" parent="objects" instance=ExtResource("6_ggmqr")]
+position = Vector2(-1241.01, 1042.01)
+rotation = -0.01757
+scale = Vector2(1, 1)
+
+[node name="UI" parent="." instance=ExtResource("6_yak4c")]
 
 [connection signal="grenade" from="agents/Player" to="." method="_on_player_grenade"]
 [connection signal="laser" from="agents/Player" to="." method="_on_player_laser"]
 [connection signal="died" from="agents/drone" to="." method="_spawn_item_on_enemy_death"]
-[connection signal="died" from="agents/drone/drone" to="." method="_spawn_item_on_enemy_death"]
+[connection signal="died" from="agents/drone2" to="." method="_spawn_item_on_enemy_death"]

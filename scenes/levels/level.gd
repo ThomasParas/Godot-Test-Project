@@ -6,7 +6,7 @@ var grenade_scene: PackedScene = preload("res://scenes/player/grenade.tscn")
 var drone_scene: PackedScene = preload("res://scenes/enemies/drone.tscn")
 var item_scene: PackedScene = preload("res://scenes/Items/item.tscn")
 
-func _on_ready():
+func _ready():
 	print("level loaded")
 	$UI.update_laser_text()
 	$agents/Player.ui_changed.connect(_on_ui_changed)
@@ -44,7 +44,7 @@ func _on_player_laser(pos, direction):
 	laser.direction = direction
 	laser.rotation_degrees = rad_to_deg(direction.angle()) + 90
 	$projectiles.add_child(laser)
-
+	
 
 func _on_player_grenade(pos, direction):
 	var grenade = grenade_scene.instantiate() as RigidBody2D
@@ -54,10 +54,8 @@ func _on_player_grenade(pos, direction):
 	grenade.linear_velocity = direction * grenade.toss_speed
 	$projectiles.add_child(grenade)
 
-
 func _on_house_player_entered(player):
 	player.zoom_in()
-
 
 func _on_house_player_exited(player):
 	player.zoom_out()
