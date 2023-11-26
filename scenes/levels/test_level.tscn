@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dyjr5eytrhrn2"]
+[gd_scene load_steps=12 format=3 uid="uid://dyjr5eytrhrn2"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_nn2io"]
 [ext_resource type="Texture2D" uid="uid://clw4l4bvo2nhr" path="res://graphics/tilesets/outside_walls.png" id="2_5ftol"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bc7us1akhed1n" path="res://scenes/enemies/drone.tscn" id="5_4yto5"]
 [ext_resource type="PackedScene" uid="uid://dn2hx2tclsw5g" path="res://scenes/objects/lights/simple_light.tscn" id="6_ggmqr"]
 [ext_resource type="PackedScene" uid="uid://d05d8aa1c3caa" path="res://scenes/player/ui.tscn" id="6_yak4c"]
+[ext_resource type="PackedScene" uid="uid://csrowyu1lgibw" path="res://scenes/Items/item.tscn" id="8_h3usi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kugd6"]
 resource_name = "Walls"
@@ -115,6 +116,8 @@ layer_1/tile_data = PackedInt32Array(131066, 65536, 0, 131067, 131072, 2, -9, 13
 [node name="projectiles" type="Node2D" parent="." groups=["Projectiles"]]
 
 [node name="triggers" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="ammo_boundary_north" type="Marker2D" parent="triggers"]
 position = Vector2(22, -4657)
@@ -130,7 +133,8 @@ position = Vector2(10746, 28)
 position = Vector2(-9305, 1)
 
 [node name="drone_spawner" type="Marker2D" parent="triggers"]
-position = Vector2(-1080, 391)
+position = Vector2(-1224, 355)
+metadata/_edit_lock_ = true
 
 [node name="agents" type="Node2D" parent="."]
 
@@ -138,7 +142,11 @@ position = Vector2(-1080, 391)
 position = Vector2(-3586, -442)
 
 [node name="drone" parent="agents" groups=["enemies"] instance=ExtResource("5_4yto5")]
-position = Vector2(-348, 361)
+position = Vector2(-596, 344)
+
+[node name="drone" parent="agents/drone" groups=["enemies"] instance=ExtResource("5_4yto5")]
+position = Vector2(-2135, -165)
+rotation = -1.54085
 
 [node name="objects" type="Node2D" parent="."]
 
@@ -156,6 +164,22 @@ rotation = -1.14512
 
 [node name="UI" parent="." instance=ExtResource("6_yak4c")]
 
+[node name="Item" parent="." instance=ExtResource("8_h3usi")]
+position = Vector2(-3500, 755)
+
+[node name="Item2" parent="." instance=ExtResource("8_h3usi")]
+position = Vector2(-2330, 202)
+
+[node name="Item3" parent="." instance=ExtResource("8_h3usi")]
+position = Vector2(-797, -387)
+
+[node name="Item4" parent="." instance=ExtResource("8_h3usi")]
+position = Vector2(-378, 343)
+
+[node name="drone" parent="." instance=ExtResource("5_4yto5")]
+position = Vector2(-1476, -392)
+
 [connection signal="grenade" from="agents/Player" to="." method="_on_player_grenade"]
 [connection signal="laser" from="agents/Player" to="." method="_on_player_laser"]
 [connection signal="died" from="agents/drone" to="." method="_spawn_item_on_enemy_death"]
+[connection signal="died" from="agents/drone/drone" to="." method="_spawn_item_on_enemy_death"]
