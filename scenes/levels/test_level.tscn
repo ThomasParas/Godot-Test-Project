@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dyjr5eytrhrn2"]
+[gd_scene load_steps=11 format=3 uid="uid://dkuk60j5le4ty"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_nn2io"]
 [ext_resource type="Texture2D" uid="uid://clw4l4bvo2nhr" path="res://graphics/tilesets/outside_walls.png" id="2_5ftol"]
