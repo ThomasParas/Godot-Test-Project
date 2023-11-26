@@ -7,6 +7,7 @@ var can_grenade: bool = true
 
 signal laser(pos, dir)
 signal grenade(pos, dir)
+signal ui_changed()
 
 func _ready():
 	print("player loaded")
@@ -68,7 +69,15 @@ func _on_secondary_timer_timeout():
 	can_grenade = true
 	print("grenade reset")
 	
-func add_item(item):
-	pass
+func add_item(type: String) -> void:
+	match type:
+		'laser':
+			global.laser_amount += 5
+			emit_signal("ui_changed")
+		'grenade':
+			global.grenade_amount += 1
+			emit_signal("ui_changed")
+		'health':
+			pass
 
 

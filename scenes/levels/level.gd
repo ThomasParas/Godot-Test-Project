@@ -9,6 +9,7 @@ var item_scene: PackedScene = preload("res://scenes/Items/item.tscn")
 func _on_ready():
 	print("level loaded")
 	$UI.update_laser_text()
+	$agents/Player.ui_changed.connect(_on_ui_changed)
 
 func _physics_process(delta):
 	if not get_tree().get_nodes_in_group("enemies"):
@@ -66,3 +67,5 @@ func _spawn_item_on_enemy_death(death_location: Vector2):
 	item.position = death_location
 	$projectiles.add_child(item)
 	
+func _on_ui_changed():
+	$UI.update_ui()

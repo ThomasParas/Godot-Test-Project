@@ -11,10 +11,12 @@ var red: Color = Color("e11d3e")
 @onready var grenade_icon: TextureRect = $GrenadeCounter/VBoxContainer/TextureRect
 
 func _ready():
+	update_ui()
+	
+func update_ui():
 	update_laser_text()
 	update_grenade_text()
 	
-
 func update_laser_text():
 	laser_label.text = str(global.laser_amount)
 	if global.laser_amount > 6:
