@@ -4,8 +4,8 @@ extends Area2D
 
 var direction: Vector2
 
-func _on_ready():
-	$TailParticles.direction = Vector2(-1,-1) * direction
+func _ready():
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
