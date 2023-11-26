@@ -96,6 +96,9 @@ frame_progress = 0.658527
 [node name="Item" parent="objects" index="16" instance=ExtResource("13_xr5ql")]
 position = Vector2(1844, -322)
 
+[node name="Item2" parent="objects" index="17" instance=ExtResource("13_xr5ql")]
+position = Vector2(240, -307)
+
 [node name="Gate" parent="." index="5" instance=ExtResource("5_4t2dm")]
 position = Vector2(1051, -821)
 
