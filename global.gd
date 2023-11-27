@@ -1,7 +1,19 @@
 extends Node
 
-var laser_amount = 20
-var grenade_amount = 5
+signal stat_change
+
+var laser_amount = 20:
+	set(value):
+		laser_amount = value
+		emit_signal('stat_change')
+var grenade_amount = 5:
+	set(value):
+		grenade_amount = value
+		emit_signal('stat_change')
+var health = 60:
+	set(value):
+		health = value
+		emit_signal('stat_change')
 
 
 func goto_scene(path: String):
@@ -17,3 +29,4 @@ func _deferred_goto_scene(path: String):
 	get_tree().root.add_child(instanced_scene)
 	# Set it as the current scene, only after it has been added to the tree
 	get_tree().current_scene = instanced_scene
+

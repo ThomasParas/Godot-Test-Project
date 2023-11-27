@@ -7,11 +7,9 @@ var can_grenade: bool = true
 
 signal laser(pos, dir)
 signal grenade(pos, dir)
-signal ui_changed()
 
 func _ready():
 	print("player loaded")
-	pass
 
 func _process(_delta):
 	_input_handler()
@@ -45,6 +43,8 @@ func _input_handler():
 			$Flashlight.enabled = true
 		else:
 			$Flashlight.enabled = false
+	if Input.is_action_just_pressed("console take damage"):
+		global.health -= 10
 
 func zoom_in():
 	var tween = create_tween()
@@ -69,15 +69,4 @@ func _on_secondary_timer_timeout():
 	can_grenade = true
 	print("grenade reset")
 	
-func add_item(type: String) -> void:
-	match type:
-		'laser':
-			global.laser_amount += 5
-			emit_signal("ui_changed")
-		'grenade':
-			global.grenade_amount += 1
-			emit_signal("ui_changed")
-		'health':
-			pass
-
 

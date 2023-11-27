@@ -1,6 +1,6 @@
 extends Area2D
 
-var item_options = ['laser', 'laser', 'laser', 'laser', 'grenade', 'health']
+var item_options = ['laser', 'laser', 'health', 'grenade', 'health', 'grenade']
 var type = item_options.pick_random()
 
 var green: Color = Color("22bb58")
@@ -25,5 +25,11 @@ func set_color(type: String):
 
 func _on_body_entered(body):
 	if is_instance_of(body, CharacterBody2D) && body.find_child("Camera2D", true, true):
-		body.add_item(type)
+		match type:
+			'laser':
+				global.laser_amount += 5
+			'grenade':
+				global.grenade_amount += 1
+			'health':
+				global.health += 10
 		queue_free()

@@ -4,18 +4,23 @@ extends CanvasLayer
 var green: Color = Color("22bb58")
 var yellow: Color = Color("e5f214")
 var red: Color = Color("e11d3e")
+var health_low_red: Color = Color("fc0034")
+var white: Color = Color("ffffff")
 
 @onready var laser_label: Label = $LaserCounter/VBoxContainer/LaserLabel
 @onready var grenade_label: Label = $GrenadeCounter/VBoxContainer/GrenadeLabel
 @onready var laser_icon: TextureRect = $LaserCounter/VBoxContainer/TextureRect
 @onready var grenade_icon: TextureRect = $GrenadeCounter/VBoxContainer/TextureRect
+@onready var health_bar: TextureProgressBar = $ProgressBarController/ProgressBar
 
 func _ready():
+	global.connect("stat_change", update_ui)
 	update_ui()
 	
 func update_ui():
 	update_laser_text()
 	update_grenade_text()
+	update_health_text()
 	
 func update_laser_text():
 	laser_label.text = str(global.laser_amount)
@@ -40,7 +45,13 @@ func update_grenade_text():
 	else: 
 		grenade_label.modulate = red
 		grenade_icon.modulate = red
-
+		
+func update_health_text():
+	health_bar.value = global.health
+	if health_bar.value > 30:
+		$ProgressBarController/ProgressBar.tint_progress = white
+	else: 
+		$ProgressBarController/ProgressBar.tint_progress = health_low_red
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

@@ -23,6 +23,4 @@ func _on_body_entered(body):
 		body.hit()
 	elif is_instance_of(body, StaticBody2D) && body.has_method("hit"):
 		body.hit()
-#	$CPUParticles2D.restart()
-#	await get_tree().create_timer(1.0).timeout
 	queue_free()

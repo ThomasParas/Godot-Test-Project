@@ -1,6 +1,9 @@
 extends StaticBody2D
 class_name ItemContainer
 
+var current_direction: Vector2 = Vector2.DOWN.rotated(rotation)
+
+
 var hit_message: String = "hit"
 # Called when the node enters the scene tree for the first time.
 func _ready():

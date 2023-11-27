@@ -37,12 +37,12 @@ texture = ExtResource("12_nohqp")
 position = Vector2(1071, -497)
 
 [node name="Toilet" parent="objects" index="0" instance=ExtResource("3_wxwtx")]
-position = Vector2(-711, -302)
+position = Vector2(2063, -247)
 collision_layer = 1
 collision_mask = 1
 
 [node name="Box" parent="objects" index="1" instance=ExtResource("4_2txao")]
-position = Vector2(-309, -430)
+position = Vector2(2465, -375)
 collision_layer = 1
 collision_mask = 1
 
@@ -94,7 +94,7 @@ position = Vector2(-4692, -108)
 frame_progress = 0.658527
 
 [node name="Item" parent="objects" index="16" instance=ExtResource("13_xr5ql")]
-position = Vector2(1844, -322)
+position = Vector2(778, -56)
 
 [node name="Item2" parent="objects" index="17" instance=ExtResource("13_xr5ql")]
 position = Vector2(240, -307)
