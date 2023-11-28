@@ -1,18 +1,15 @@
 extends StaticBody2D
 class_name ItemContainer
 
-var current_direction: Vector2 = Vector2.DOWN.rotated(rotation)
+@onready var current_direction: Vector2 = Vector2.DOWN.rotated(rotation)
 
-
-var hit_message: String = "hit"
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+signal open(pos, direction)
+var hit_message= "hit"
 
 func hit():
-	print(hit_message)
+	if $LidSprite.is_visible():
+		$LidSprite.hide()
+		for i in range(randi_range(1,3)):
+			var pos = $SpawnPositions.get_child(randi()%$SpawnPositions.get_child_count()).global_position
+			open.emit(pos, current_direction)
+

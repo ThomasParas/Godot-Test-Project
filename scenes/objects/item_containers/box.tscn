@@ -1,22 +1,32 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3a08lyix4kh8"]
+[gd_scene load_steps=7 format=3 uid="uid://d3a08lyix4kh8"]
 
 [ext_resource type="PackedScene" uid="uid://btiectrrj2vb5" path="res://scenes/objects/item_containers/item_container.tscn" id="1_nbufq"]
 [ext_resource type="Script" path="res://scenes/objects/item_containers/Box.gd" id="2_rf43s"]
-[ext_resource type="Texture2D" uid="uid://dcbldfrgc63gm" path="res://graphics/objects/Box.png" id="3_0khji"]
+[ext_resource type="Texture2D" uid="uid://ceb5qpkejitb7" path="res://graphics/objects/box/base.png" id="3_mb7bn"]
+[ext_resource type="Texture2D" uid="uid://xlhhhm6mqrdq" path="res://graphics/objects/box/lid.png" id="4_2ibg4"]
 [ext_resource type="Shape2D" uid="uid://diy2ksbo0s7sr" path="res://scenes/objects/item_containers/box_rectangle_shape.tres" id="4_jpiin"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_icm2a"]
-polygon = PackedVector2Array(-171, -120, 168, -122, 170, 125, -175, 127)
+polygon = PackedVector2Array(-193, -84, 185, -86, 187, 88, -196, 89)
 
 [node name="Box" instance=ExtResource("1_nbufq")]
 script = ExtResource("2_rf43s")
 
-[node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("3_0khji")
+[node name="BaseSprite" parent="." index="0"]
+texture = ExtResource("3_mb7bn")
 
-[node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(-2.5, 2.5)
-shape = ExtResource("4_jpiin")
+[node name="LidSprite" parent="." index="1"]
+texture = ExtResource("4_2ibg4")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." index="2"]
 occluder = SubResource("OccluderPolygon2D_icm2a")
+
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2(-4.5, 1)
+shape = ExtResource("4_jpiin")
+
+[node name="Marker2D" parent="SpawnPositions" index="0"]
+position = Vector2(-116, -43)
+
+[node name="Marker2D2" parent="SpawnPositions" index="1"]
+position = Vector2(105, -32)

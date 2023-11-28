@@ -8,10 +8,19 @@ var blue: Color = Color("33d4ff")
 var orange: Color = Color("f79239")
 var is_color_chosen: bool = false
 
+var direction: Vector2
+var distance: int = randi_range(150, 250)
+
 func _ready():
 	$AnimationPlayer.play("Pulsate and Spin")
 	if not is_color_chosen:
 		set_color(type)
+		
+	var target_pos = position + direction * distance
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(self, "position", target_pos, 0.5)
+	tween.tween_property(self, "scale", Vector2(1,1), 0.3).from(Vector2(0,0))
 	
 func set_color(type: String):
 	match type:

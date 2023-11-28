@@ -5,12 +5,33 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1f5c"]
 size = Vector2(349, 251)
 
-[node name="item_container" type="StaticBody2D"]
+[node name="item_container" type="StaticBody2D" groups=["container"]]
+z_index = -5
 collision_layer = 4
-collision_mask = 15
+collision_mask = 11
 script = ExtResource("1_4w5h0")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="BaseSprite" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(-3, 0)
+
+[node name="LidSprite" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(-3, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_p1f5c")
+
+[node name="SpawnPositions" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(-40, -24)
+
+[node name="Marker2D2" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(39, -20)
+
+[node name="Marker2D3" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(-37, 13)
+
+[node name="Marker2D4" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(40, 20)

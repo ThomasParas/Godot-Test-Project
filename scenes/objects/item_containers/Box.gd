@@ -3,7 +3,7 @@ extends ItemContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	hit_message = "box"
+	hit_message = current_direction
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

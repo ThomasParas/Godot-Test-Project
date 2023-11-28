@@ -79,7 +79,9 @@ position = Vector2(184, 978)
 rotation = -0.878348
 
 [node name="Box" parent="objects" index="3" instance=ExtResource("3_4j2n0")]
+z_index = 0
 position = Vector2(-124, 178)
+collision_mask = 15
 
 [node name="SteamVent" parent="objects" index="4" instance=ExtResource("6_qugrf")]
 position = Vector2(2340, 1173)

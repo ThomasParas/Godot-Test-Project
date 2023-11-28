@@ -8,7 +8,15 @@ var item_scene: PackedScene = preload("res://scenes/Items/item.tscn")
 
 func _ready():
 	print("level loaded")
-	$UI.update_laser_text()
+	$UI.update_ui()
+	for container in get_tree().get_nodes_in_group("container"):
+		container.open.connect(_on_container_opened)
+		
+func _on_container_opened(pos, direction):
+	var item = item_scene.instantiate() as Area2D
+	item.position = pos
+	item.direction = direction
+	$projectiles.call_deferred('add_child', item)
 
 func _physics_process(delta):
 	if not get_tree().get_nodes_in_group("enemies"):
@@ -32,26 +40,24 @@ func _spawn_new_drone():
 		drone.add_to_group("enemies")
 		drone.position = $triggers/drone_spawner.position
 		drone.died.connect(_spawn_item_on_enemy_death)
-		$agents.add_child(drone)
+		$agents.call_deferred('add_child', drone)
 
 
 func _on_player_laser(pos, direction):
 	var laser = laser_scene.instantiate() as Area2D
-	$UI.update_laser_text()
 	laser.add_to_group("projectiles")
 	laser.position = pos
 	laser.direction = direction
 	laser.rotation_degrees = rad_to_deg(direction.angle()) + 90
-	$projectiles.add_child(laser)
+	$projectiles.call_deferred('add_child', laser)
 	
 
 func _on_player_grenade(pos, direction):
 	var grenade = grenade_scene.instantiate() as RigidBody2D
-	$UI.update_grenade_text()
 	grenade.add_to_group("projectiles")
 	grenade.position = pos
 	grenade.linear_velocity = direction * grenade.toss_speed
-	$projectiles.add_child(grenade)
+	$projectiles.call_deferred('add_child', grenade)
 
 func _on_house_player_entered(player):
 	player.zoom_in()
@@ -62,5 +68,5 @@ func _on_house_player_exited(player):
 func _spawn_item_on_enemy_death(death_location: Vector2):
 	var item = item_scene.instantiate() as Area2D
 	item.position = death_location
-	$projectiles.add_child(item)
+	$projectiles.call_deferred('add_child', item)
 	

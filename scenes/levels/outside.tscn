@@ -37,11 +37,13 @@ texture = ExtResource("12_nohqp")
 position = Vector2(1071, -497)
 
 [node name="Toilet" parent="objects" index="0" instance=ExtResource("3_wxwtx")]
+z_index = 0
 position = Vector2(2063, -247)
 collision_layer = 1
 collision_mask = 1
 
 [node name="Box" parent="objects" index="1" instance=ExtResource("4_2txao")]
+z_index = 0
 position = Vector2(2465, -375)
 collision_layer = 1
 collision_mask = 1
